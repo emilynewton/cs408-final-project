@@ -1,5 +1,35 @@
+body {
+  background-color: #ffb5d9;
+  max-width: 100%; 
+}
+
 .column {
   float: left; 
   width: 50%; 
 }
 
+.row:after {
+  content: ""; 
+  display: table; 
+  clear: both; 
+}
+
+a:link {
+  color: #801146;
+  text-decoration: none; 
+}
+
+a:hover {
+  color: #bd3a79;
+  border: solid 1px; 
+}
+
+.HomepageLink:hover {
+  background-color: #801146;
+  color: white; 
+}
+
+li {
+  list-style-type: none; 
+  text-align: center; 
+}

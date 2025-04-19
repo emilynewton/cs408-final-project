@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <meta charset="utf-8">
+        <title>Fermat's Little Theorem</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+          </script>
+          <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+          </script>
+    </head>
+    <body> 
+        <h1>Fermat's Little Theorem</h1>
+        <p>This theorem plays a big part in the field of number theory, which is a field 
+            I would like to discuss more on this page. It deals with modular arithmetic. 
+            In order to understand this theorem, it's important to understand the basis 
+            of modular arithmetic. Funny enough, many of these concepts have appeared in 
+            my computer science classes. It's the first time I have encountered and worked 
+            with modular arithmetic. When learning about long division in the early days, 
+            you deal with a remainder, but you don't really consider it. When dividing two 
+            integers, we're able to represent this as $\frac{A}{B}=Q \text{remainder} R$. $A$ being the 
+            dividend, $B$ being the divisor, $Q$ being the quotient, and $R$ representing the remainder.
+            Another way that this can be represented is through the modulo operator. 'Modulo' is just some 
+            jargon brought in by mathematician Carl Friedrich Gauss (Ever heard of Gaussian Elimination of 
+            linear functions?) This is written as $A \mod B=R$. In words, it's $A modulo B is equal to R$, where $B$ is the modulus. 
+            What does this all mean though? If we were to have the problem $12 \mod 5$ for example, the answer 
+            would be the remainder of 12 divided by 5, which is 2. So instead of focusing on 
+            the amount of times our modulus goes into our dividend, we care only about the remainder, which is unusal.</p>
+            <p>So, what exactly is the point of a remainder. I had to ask myself that when I first learned about this. 
+            It actually helps to learn about it through programming. In programming, the 'mod'
+            is represented using the '%' operator. In the times I have used it, it has been for determining 
+            if a number is even or odd. $x % 2$ returns either a 0 or a 1, which means the dividend, $x$, is even or odd, respectively.
+            </p> 
+            <p> Now, onto the actual theorem is as follows, 
+                <br>If $a$ is an integer, $p$ is a prime number and $a$ is not divisible by $p$, then $a^{p-1}\equiv 1 \pmod{p}$
+            </p>
+        <div>
+            <h2>Sources!</h2>
+            <ul> 
+                
+            </ul>
+        </div>
+        <a href="index.html" class="HomepageLink">Back to the homepage</a>
+    </body>
+</html>

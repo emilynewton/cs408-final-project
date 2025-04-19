@@ -12,6 +12,17 @@ As you could have probably guessed, this site would be targeted towards other st
 
 ## Project Wireframe
 
-![wireframe](homePage.png)
-![wirefram](AboutMe.png)
-![wireframe](ProofPage.png)
+![Home Page](homePage.png)
+![About Me Page](AboutMe.png)
+![Proof Example](ProofPage.png)
+
+
+## Sources 
+
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_two_columns 
+
+https://www.w3schools.com/tags/tag_input.asp
+
+https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic
+
+https://blog.mattclemente.com/2019/07/12/modulus-operator-modulo-operation/
