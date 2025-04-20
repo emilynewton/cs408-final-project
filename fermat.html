@@ -26,22 +26,62 @@
             dividend, $B$ being the divisor, $Q$ being the quotient, and $R$ representing the remainder.
             Another way that this can be represented is through the modulo operator. 'Modulo' is just some 
             jargon brought in by mathematician Carl Friedrich Gauss (Ever heard of Gaussian Elimination of 
-            linear functions?) This is written as $A \mod B=R$. In words, it's $A$ modulo $B$ is equal to $R$, where $B$ is the modulus. 
-            What does this all mean though? If we were to have the problem $12 \mod 5$ for example, the answer 
+            linear functions?) This is written as $A\mod B=R$. In words, it's $A$ modulo $B$ is equal to $R$, where $B$ is the modulus. 
+            What does this all mean though? If we were to have the problem $12\mod 5$ for example, the answer 
             would be the remainder of 12 divided by 5, which is 2. So instead of focusing on 
             the amount of times our modulus goes into our dividend, we care only about the remainder, which is unusal.</p>
-            <p>So, what exactly is the point of a remainder. I had to ask myself that when I first learned about this. 
+            <p>So, what exactly is the point of a remainder? I had to ask myself that when I first learned about this. 
             It actually helps to learn about it through programming. In programming, the 'mod'
             is represented using the '%' operator. In the times I have used it, it has been for determining 
             if a number is even or odd. $x % 2$ returns either a 0 or a 1, which means the dividend, $x$, is even or odd, respectively.
             </p> 
-            <p> Now, onto the actual theorem is as follows, 
+            <p> Now, onto the actual theorem. Fermat's Little Theorem is as follows,
                 <br>If $a$ is an integer, $p$ is a prime number and $a$ is not divisible by $p$, then $a^{p-1}\equiv 1 \pmod{p}$
+                
+                <br> But wait, what is $\equiv$? This is a congruent symbol, and it works a little differently 
+                than a regular equals sign. When we have the expression $A\equiv B \pmod{C}$, in words, that is 
+                saying that $A$ is congruent to $B$ modulo $C$. Two things are congruent if they are 
+                in the same equivalence class, which is a whole other topic. That's kind of what I love about 
+                math though, there are so many layers that build off of each other. This is already 
+                getting kind of long so I'm skipping over that for now. $\pmod{C}$ explains the operation 
+                performed on $A$ and $B$. For example, if we have $28\equiv 5 \pmod{4}$, this is the same as evaluating 
+                $28 \mod 4$ and $5 \mod 4$, which is 0 and 1, respectively. This tells us that they are not in the 
+                same equivalence class. It's interesting to me that when you bring in $\equiv$, you are now checking to 
+                satisfy two conditions. 
             </p>
+            <p> It's so easy to get derailed when talking about math, becuase again, there are so many working parts in one 
+                concept. But, let's get back to the theorem. Let's try an example. Try $a=3$ and $p=7$. Then, $3^{6}\equiv 1 \pmod{7}$. This gives us $729\equiv 1\pmod{7}$. Rewriting this, 
+                we have $729\mod 7 = 1$ and $1 \mod 7 = 1$. So, 729 divided by 7 produces a 
+                remainder of 1. Essentially, any expression in this format will produce a remainder of 1. 
+                A lot of the times when learning about math theorems, I ask myself why should I care about this. 
+                Well, guess what? I was pleased to find out that Fermat's Little Theorem plays bit of a role in the RSA algorithm, 
+                an asymmetric encryption algorithm used to generate, distribute, encrypt, and decrypt public and private keys. This is amazing becuase 
+                I've learned about this algorithm, but never thought to put the two together. However, it makes so much sense. 
+                The RSA Algorithm is as follows: Let $N = p\cdot q$ where $p$ and $q$ are two prime numbers. 
+                Let $\phi = (p-1)\cdot (q-1$ Choose an integer $e$ with $1 < e < N$ such that $e$ and $\phi$ are relatively prime. 
+                Just a quick reminder, two integers are relatively prime if their greatest common divisor is 1, meaning they share 
+                no common factors other than 1. Now, the public key consists of $N$ and $e$, and $e$ is the encryption key. The encryption 
+                function is then $f(M) \equiv M^e\pmod{N}$, where M is a positive integer and the original message. 
+                Now, the private key can be represented by a positive integer $d$ that satifies the following condition: 
+                <br> $d\cdot e\equiv 1\pmod{phi = (p-1)cdot(q-1)}$
+                <br> This means that $d$ is the multiplicative inverse of $e$ in the modular arithmetic of modulo $\phi$. 
+                The number $d$ will be used as a decryption key to decode messages. So once the owner of the public key receives 
+                an encrypted message $C=f(M)$, they will use the decryption function to obtain the message $M$. 
+                <br> $g(C) \equiv C^d\pmod{N}$ 
+                <br> Here's where Fermat's Little Theorem comes into play. This theorem is used to prove the accuracy of the RSA algorithm. 
+                Largely, it focuses on the encryption process of the algorithm, since the algorithm relies on large prime numbers 
+                The theorem is used to ensure that the numbers chosen have properties that make the encryption secure yet feasible to compute 
+                given the correct key. You are able to determine the modular inverse during the generation of the key process. 
+
+                
         <div>
             <h2>Sources!</h2>
             <ul> 
-                
+                <li> https://www.davidmaiolo.com/2024/03/10/exploring-impact-fermats-little-theorem-cryptography/
+                <li> https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic
+                <li> https://blog.mattclemente.com/2019/07/12/modulus-operator-modulo-operation/
+                <li> https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/congruence-modulo
+                <li> https://exploringnumbertheory.wordpress.com/2013/07/08/fermats-little-theorem-and-rsa-algorithm/
             </ul>
         </div>
         <a href="index.html" class="HomepageLink">Back to the homepage</a>

@@ -26,3 +26,9 @@ https://www.w3schools.com/tags/tag_input.asp
 https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic
 
 https://blog.mattclemente.com/2019/07/12/modulus-operator-modulo-operation/
+
+https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/congruence-modulo
+
+https://exploringnumbertheory.wordpress.com/2013/07/08/fermats-little-theorem-and-rsa-algorithm/
+
+https://www.davidmaiolo.com/2024/03/10/exploring-impact-fermats-little-theorem-cryptography/
