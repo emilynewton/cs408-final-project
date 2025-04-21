@@ -33,3 +33,19 @@ li {
   list-style-type: none; 
   text-align: center; 
 }
+
+.topicPage {
+  border: solid; 
+  border-radius: 20px 20px 20px 20px;
+  border-color: #801146; 
+  background-color: #e099bc; 
+  padding: 15px; 
+}
+
+.sources {
+  border: solid; 
+  border-radius: 20px 20px 20px 20px;
+  border-color: #801146; 
+  background-color: #e099bc;
+}
+
