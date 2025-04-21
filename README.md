@@ -32,3 +32,9 @@ https://www.khanacademy.org/computing/computer-science/cryptography/modarithmeti
 https://exploringnumbertheory.wordpress.com/2013/07/08/fermats-little-theorem-and-rsa-algorithm/
 
 https://www.davidmaiolo.com/2024/03/10/exploring-impact-fermats-little-theorem-cryptography/
+
+https://math.mit.edu/research/highschool/primes/circle/documents/2020/Ayinon_2020.pdf
+
+https://doc.sagemath.org/html/en/reference/knots/sage/knots/link.html
+
+https://homepages.math.uic.edu/~kauffman/RTang.pdf

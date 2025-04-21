@@ -3,33 +3,18 @@
 
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Meowmatical!</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
- <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      },
-      svg: {
-        fontCache: 'global'
-      }
-    };
-    
-    (function () {
-      var script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-      script.async = true;
-      document.head.appendChild(script);
-    })();
-</script>
 </head>
 
 <body>
   <h1> Meowmatical! </h1>
+  <p id="lambda-info">
+    <!-- loaded with AJAX -->
+  </p>
   <div class="row">
     <div class="column">
       <div> 
@@ -80,35 +65,30 @@
   <div class="QuestionBox">
     <p> Do you have a topic that you want covered on this page? Let us know!</p>
     <form id="SuggestionBox"> 
+      <input type="number" placeholder="ID" id="id" name="id">
       <input type="text" placeholder="Topic (e.g. Theorem, Proof, etc)" id="topic" name="topic">
-      <input type="concept" placeholder="Concept..." id="concept" name="concept">
+      <input type="text" placeholder="Concept..." id="concept" name="concept">
     </form>    
     <button id="addTopic">Submit!</button>
     <script> 
-      document.getElementById("addTopic").onclick = function() {
-        let form = document.getElementById("SuggestionBox");
-        let topic = form.elements["topic"].value; 
-        let concept = form.elements["concept"].value;
-        if (!topic || !concept) {
-          alert("Please enter both a topic and a concept!"); 
-          return; 
-        }
+      document.getElementById("addTopic").onclick = function () {
         let xhr = new XMLHttpRequest(); 
         xhr.open("PUT", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onload = function() {
-          form.reset(); 
-          loadResponses(); 
-        };
-        
+        xhr.setRequestHeader("Content-Type", "application/json"); 
+        let form = document.getElementById("SuggestionBox"); 
+        let id = form.elements["id"].value; 
+        let topic = form.elements["topic"].value; 
+        let concept = form.elements["concept"].value; 
         xhr.send(JSON.stringify({
-          topic: topic, 
-          concept: concept
+          "id": id, 
+          "topic": topic, 
+          "concept": concept
         })); 
       };
     </script>
   </div>
   <div class="ResponseBox">
+    <button id="load-items">Load Responses</button>
       <table id="responses"> 
         <thead>
           <tr>  
@@ -123,57 +103,110 @@
         </tbody>
       </table>
 <script> 
-    function loadResponses() {
-      let xhr = new XMLHttpRequest(); 
-      xhr.open("GET", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items");
-      xhr.onload = function () {
-        let items = JSON.parse(xhr.responseText); 
-        let tableBody = document.getElementById("responses").getElementsByTagName("tbody")[0]; 
-        tableBody.innerHTML = "";
-        let id = 1; 
-        items.forEach(item => {
-          let row = document.createElement("tr"); 
-
-          let idCell = document.createElement("td"); 
-          idCell.textContent = id++; 
-          row.appendChild(idCell); 
-
-          let topicCell = document.createElement("td"); 
-          topicCell.textContent = item.topic; 
-          row.appendChild(topicCell); 
-
-          let conceptCell = document.createElement("td"); 
-          conceptCell.textContent = item.concept; 
-          row.appendChild(conceptCell); 
-
-          let actionCell = document.createElement("td"); 
-
-          let deleteButton = document.createElement("button"); 
-          deleteButton.textContent = "delete"
-          deleteButton.onclick = function() {
-            deleteItem(item.id); 
-          }
-          actionCell.appendChild(deleteButton); 
-          row.appendChild(actionCell); 
-          tableBody.appendChild(row);  
-      });
-      }
-    xhr.send(); 
-    };
-  function deleteItem(itemId) {
+  document.getElementById("load-items").onclick = function() {
+    let lambda = document.getElementById("lambda-info"); 
     let xhr = new XMLHttpRequest(); 
-    xhr.open("DELETE", `https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/${itemId}`);
-    xhr.setRequestHeader("Content-Type", "application/json"); 
+    xhr.addEventListener("load", function () {
+      lambda.innerHTML = xhr.response; 
+    }); 
+    xhr.open("GET", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items");
+
     xhr.onload = function() {
-      loadResponses(); 
-    };
-    xhr.send(); 
-  }
-  window.onload = loadResponses; 
+      let items = JSON.parse(xhr.responseText); 
+      let tableBody = document.getElementById("responses").getElementsByTagName("tbody")[0]; 
+      tableBody.innerHTML = ""; // clears any old data
+      //let id = 1; 
+      items.forEach(item => {
+        let row = document.createElement("tr"); 
+
+        let idCell = document.createElement("td"); 
+        //idCell.textContent = id++; 
+        idCell.textContent = item.id; 
+        row.appendChild(idCell); 
+
+        let topicCell = document.createElement("td"); 
+        topicCell.textContent = item.topic || item.content?.topic || "N/A";
+        row.appendChild(topicCell); 
+
+        let conceptCell = document.createElement("td"); 
+        conceptCell.textContent = item.concept || item.content?.concept || "N/A";
+        row.appendChild(conceptCell); 
+
+        let actionCell = document.createElement("td"); 
+
+        let deleteButton = document.createElement("button"); 
+        deleteButton.textContent = "delete"          
+        deleteButton.onclick = function() {
+          deleteItem(item.id); 
+        }
+        actionCell.appendChild(deleteButton); 
+        row.appendChild(actionCell); 
+        tableBody.appendChild(row); 
+      });
+    }
+
+    xhr.send();
+  };
+    function deleteItem(itemId) {
+      let xhr = new XMLHttpRequest(); 
+      xhr.open("DELETE", `https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/${itemId}`);
+      xhr.setRequestHeader("Content-Type", "application/json"); 
+      xhr.onload = function() {
+        document.getElementById("load-items").click(); 
+      } 
+      xhr.send(); 
+    }
+  //   function loadResponses() {
+  //     let xhr = new XMLHttpRequest(); 
+  //     xhr.open("GET", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items");
+  //     xhr.onload = function () {
+  //       let items = JSON.parse(xhr.responseText); 
+  //       let tableBody = document.getElementById("responses").getElementsByTagName("tbody")[0]; 
+  //       tableBody.innerHTML = "";
+  //       let id = 1; 
+  //       items.forEach(item => {
+  //         let row = document.createElement("tr"); 
+
+  //         let idCell = document.createElement("td"); 
+  //         idCell.textContent = id++; 
+  //         row.appendChild(idCell); 
+
+  //         let topicCell = document.createElement("td"); 
+  //         topicCell.textContent = item.topic; 
+  //         row.appendChild(topicCell); 
+
+  //         let conceptCell = document.createElement("td"); 
+  //         conceptCell.textContent = item.concept; 
+  //         row.appendChild(conceptCell); 
+
+  //         let actionCell = document.createElement("td"); 
+
+  //         let deleteButton = document.createElement("button"); 
+  //         deleteButton.textContent = "delete"
+  //         deleteButton.onclick = function() {
+  //           deleteItem(item.id); 
+  //         }
+  //         actionCell.appendChild(deleteButton); 
+  //         row.appendChild(actionCell); 
+  //         tableBody.appendChild(row);  
+  //     });
+  //     }
+  //   xhr.send(); 
+  //   };
+  // function deleteItem(itemId) {
+  //   let xhr = new XMLHttpRequest(); 
+  //   xhr.open("DELETE", https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/${itemId});
+  //   xhr.setRequestHeader("Content-Type", "application/json"); 
+  //   xhr.onload = function() {
+  //     loadResponses(); 
+  //   };
+  //   xhr.send(); 
+  // }
+  // window.onload = loadResponses; 
   </script>
   </div>
   <a href="aboutme.html">Click to learn more about the author of this page!</a>
 
 </body>
 
-</html>
+</html> 
