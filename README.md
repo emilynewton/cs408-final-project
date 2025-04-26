@@ -38,3 +38,7 @@ https://math.mit.edu/research/highschool/primes/circle/documents/2020/Ayinon_202
 https://doc.sagemath.org/html/en/reference/knots/sage/knots/link.html
 
 https://homepages.math.uic.edu/~kauffman/RTang.pdf
+
+https://stackoverflow.com/questions/8683528/embed-image-in-a-button-element
+
+https://stackoverflow.com/questions/42147537/how-to-switch-between-two-images-using-one-button-html-js

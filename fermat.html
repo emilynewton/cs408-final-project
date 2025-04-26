@@ -13,7 +13,7 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
           </script>
     </head>
-    <body> 
+    <body>
         <h1>Fermat's Little Theorem</h1>
         <div class="topicPage"> 
         <p>This theorem plays a big part in the field of number theory, which is a field 
@@ -85,6 +85,20 @@
                 <li style="text-align: left;"> <a href="https://artofproblemsolving.com/wiki/index.php/Fermat%27s_Little_Theorem?srsltid=AfmBOoo8J3U3XKJafFb9gL9rcEN-GtscY1BbSHjYnQ0W-LEeghfCDEtc">Art of Problem Solving - Fermat's Little Theorem</a>
             </ul>
         </div>
+        <script>
+            var index = 0;
+            var imageList = ['emptyheart.jpg', 'fullheart1.png'];
+
+            function changeImage() {
+                index = index + 1;
+                if (index == imageList.length) {
+                    index = 0;
+                }
+                var image1 = document.getElementById("heart");
+                image1.src = imageList[index];
+            }
+        </script> 
+        <button type="button" class="likeButton" onclick="changeImage()"><img src='emptyheart.jpg' id="heart"></button>
         <a href="index.html" class="HomepageLink">Back to the homepage</a>
     </body>
 </html>

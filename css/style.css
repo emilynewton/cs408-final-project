@@ -49,3 +49,13 @@ li {
   background-color: #e099bc;
 }
 
+.likeButton {
+  border: none; 
+  background: none; 
+}
+
+#heart {
+  width: 20px; 
+  height: 20px; 
+}
+

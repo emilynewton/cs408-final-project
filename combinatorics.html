@@ -25,6 +25,20 @@
                 
             </ul>
         </div>
+        <script>
+          var index = 0;
+          var imageList = ['emptyheart.jpg', 'fullheart1.png'];
+
+          function changeImage() {
+              index = index + 1;
+              if (index == imageList.length) {
+                  index = 0;
+              }
+              var image1 = document.getElementById("heart");
+              image1.src = imageList[index];
+          }
+      </script> 
+      <button type="button" class="likeButton" onclick="changeImage()"><img src='emptyheart.jpg' id="heart"></button>
         <a href="index.html" class="HomepageLink">Back to the homepage</a>
     </body>
 </html>
