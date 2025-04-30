@@ -14,7 +14,8 @@
           </script>
     </head>
     <body>
-        <h1>Fermat's Little Theorem</h1>
+        <h1><a href="index.html" class="HomepageLink"><img src="meowmatical.PNG" alt="Meowmatical Logo" width="300" height="100"></a></h1>
+        <h2>Fermat's Little Theorem</h2>
         <div class="topicPage"> 
         <p>This theorem plays a big part in the field of number theory, which is a field 
             I would like to discuss more on this page. It deals with modular arithmetic. 
@@ -88,17 +89,41 @@
         <script>
             var index = 0;
             var imageList = ['emptyheart.jpg', 'fullheart1.png'];
+            var likeCount = 0; 
 
             function changeImage() {
                 index = index + 1;
                 if (index == imageList.length) {
                     index = 0;
+                    likeCount--; 
                 }
                 var image1 = document.getElementById("heart");
                 image1.src = imageList[index];
+                if (imageList[index] == 'fullheart1.png') {
+                    likeCount++; 
+                    sendLikeToServer(likeCount); 
+                }
+                document.querySelector('.post-rating-count').textContent = likeCount; 
+            }
+            
+            function sendLikeToServer(likeCount) {
+                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items", {
+                    method: 'PUT', 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }, 
+                    body: JSON.stringify({id: 'fermat-likes', count: likeCount})
+                })
+                .then(response => response.json())
+                .then(data => console.log("updated like count", data))
             }
         </script> 
-        <button type="button" class="likeButton" onclick="changeImage()"><img src='emptyheart.jpg' id="heart"></button>
-        <a href="index.html" class="HomepageLink">Back to the homepage</a>
+        <div class="post-rating">
+            <button type="button" class="likeButton" onclick="changeImage()"><img src='emptyheart.jpg' id="heart"></button>
+            <span id="fermat-likes" class="post-rating-count">0</span>
+        </div>
+        <script> 
+
+        </script> 
     </body>
 </html>

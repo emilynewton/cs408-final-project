@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <h1> Meowmatical! </h1>
+  <h1><img src="meowmatical.PNG" alt="Meowmatical Logo" width="300" height="100"></h1>
   <p id="lambda-info">
     <!-- loaded with AJAX -->
   </p>
@@ -20,7 +20,22 @@
       <div> 
         <h2>Theorems</h2>
         <ul> 
-          <li><a href="fermat.html">Fermat's Little Theorem</a></li>
+          <li><a href="fermat.html">Fermat's Little Theorem</a></li><div id="fermatLikes"><span id="fermat-likes"></span> Like(s)</div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              const counter = document.getElementById("fermat-likes");
+              if (!counter) return; 
+                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/fermat-likes")
+                .then(res => res.json())
+                .then(data => {
+                  counter.textContent = data.count || 0; 
+                })
+                .catch(err => {
+                  console.error("failed to fetch like count: ", err); 
+                  counter.textContent = "0"; 
+                });
+            });
+          </script>
       </div>
     
       <div>
@@ -33,7 +48,22 @@
       <div>
         <h2>Calculus Concepts</h2>
         <ul> 
-          <li><a href="integrals.html">Integrals</a></li>
+          <li><a href="integrals.html">Integrals</a></li><div id="integralLikes"><span id="integrals-likes"></span> Like(s)</div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              const counter = document.getElementById("integrals-likes");
+              if (!counter) return; 
+                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/fermat-likes")
+                .then(res => res.json())
+                .then(data => {
+                  counter.textContent = data.count || 0; 
+                })
+                .catch(err => {
+                  console.error("failed to fetch like count: ", err); 
+                  counter.textContent = "0"; 
+                });
+            });
+          </script>
         </ul>
       </div>
     </div>
@@ -65,7 +95,7 @@
   <div class="QuestionBox">
     <p> Do you have a topic that you want covered on this page? Let us know!</p>
     <form id="SuggestionBox"> 
-      <input type="number" placeholder="ID" id="id" name="id">
+      <!--<input type="number" placeholder="ID" id="id" name="id">-->
       <input type="text" placeholder="Topic (e.g. Theorem, Proof, etc)" id="topic" name="topic">
       <input type="text" placeholder="Concept..." id="concept" name="concept">
     </form>    
@@ -76,7 +106,7 @@
         xhr.open("PUT", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items");
         xhr.setRequestHeader("Content-Type", "application/json"); 
         let form = document.getElementById("SuggestionBox"); 
-        let id = form.elements["id"].value; 
+        let id = `item-${Date.now()}`; 
         let topic = form.elements["topic"].value; 
         let concept = form.elements["concept"].value; 
         xhr.send(JSON.stringify({
@@ -85,6 +115,7 @@
           "concept": concept
         })); 
         loadResponses(); 
+        form.reset(); 
       };
     </script>
   </div>
@@ -92,7 +123,7 @@
       <table id="responses"> 
         <thead>
           <tr>  
-            <th>ID</th>
+            <!--<th>ID</th>-->
             <th>Topic</th>
             <th>Concept</th>
             <th>Action</th>
@@ -110,13 +141,8 @@
         let items = JSON.parse(xhr.responseText); 
         let tableBody = document.getElementById("responses").getElementsByTagName("tbody")[0]; 
         tableBody.innerHTML = "";
-        //let id = 1; 
         items.forEach(item => {
           let row = document.createElement("tr"); 
-
-          let idCell = document.createElement("td"); 
-          idCell.textContent = item.id;  
-          row.appendChild(idCell); 
 
           let topicCell = document.createElement("td"); 
           topicCell.textContent = item.topic; 

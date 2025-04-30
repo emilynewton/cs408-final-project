@@ -25,8 +25,7 @@ a:hover {
 }
 
 .HomepageLink:hover {
-  background-color: #801146;
-  color: white; 
+  border: none; 
 }
 
 li {
@@ -51,7 +50,7 @@ li {
 
 .likeButton {
   border: none; 
-  background: none; 
+  background: none;  
 }
 
 #heart {
@@ -59,3 +58,30 @@ li {
   height: 20px; 
 }
 
+.post-rating {
+  display: flex; 
+  justify-content: flex-start; 
+  padding: 12px 0; 
+  cursor: default; 
+}
+
+.post-rating-count {
+  padding: 2.5px; 
+  color: black;
+}
+
+#fermatLikes { 
+  display: flex; 
+  justify-content: center; 
+  gap: 4px; 
+}
+
+#integralLikes { 
+  display: flex; 
+  justify-content: center; 
+  gap: 4px; 
+}
+
+h2 {
+  text-align: center;
+}
