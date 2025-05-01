@@ -15,6 +15,7 @@
   <p id="lambda-info">
     <!-- loaded with AJAX -->
   </p>
+  <div class="content"> 
   <div class="row">
     <div class="column">
       <div> 
@@ -46,7 +47,7 @@
             document.addEventListener("DOMContentLoaded", function() {
               const counter = document.getElementById("induction-likes");
               if (!counter) return; 
-                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/fermat-likes")
+                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/induction-likes")
                 .then(res => res.json())
                 .then(data => {
                   counter.textContent = JSON.parse(data).count || 0;
@@ -136,7 +137,7 @@
             document.addEventListener("DOMContentLoaded", function() {
               const counter = document.getElementById("imaginary-likes");
               if (!counter) return; 
-                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/fermat-likes")
+                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/imaginary-likes")
                 .then(res => res.json())
                 .then(data => {
                   counter.textContent = JSON.parse(data).count || 0; 
@@ -151,39 +152,39 @@
       </div>
     </div>
   </div>
-
+<div class="UserInput">
   <div class="QuestionBox">
-    <p> Do you have a topic that you want covered on this page? Let us know!</p>
-    <form id="SuggestionBox"> 
-      <!--<input type="number" placeholder="ID" id="id" name="id">-->
-      <input type="text" placeholder="Topic (e.g. Theorem, Proof, etc)" id="topic" name="topic">
-      <input type="text" placeholder="Concept..." id="concept" name="concept">
-    </form>    
-    <button id="addTopic">Submit!</button>
-    <script> 
-      document.getElementById("addTopic").onclick = function () {
-        let xhr = new XMLHttpRequest(); 
-        xhr.open("PUT", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items");
-        xhr.setRequestHeader("Content-Type", "application/json"); 
-        let form = document.getElementById("SuggestionBox"); 
-        let id = `item-${Date.now()}`; 
-        let topic = form.elements["topic"].value; 
-        let concept = form.elements["concept"].value; 
-        xhr.send(JSON.stringify({
-          "id": id, 
-          "topic": topic, 
-          "concept": concept
-        })); 
-        loadResponses(); 
-        form.reset(); 
-      };
-    </script>
+      <p> Do you have a topic that you want covered on this page? Let us know!</p>
+      <div class="Suggestions">
+      <form id="SuggestionBox"> 
+        <input type="text" placeholder="Topic (e.g. Theorem, Proof, etc)" id="topic" name="topic">
+        <input type="text" placeholder="Concept..." id="concept" name="concept">
+      </form>    
+      <button id="addTopic">Submit!</button>
+      <script> 
+        document.getElementById("addTopic").onclick = function () {
+          let xhr = new XMLHttpRequest(); 
+          xhr.open("PUT", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items");
+          xhr.setRequestHeader("Content-Type", "application/json"); 
+          let form = document.getElementById("SuggestionBox"); 
+          let id = `item-${Date.now()}`; 
+          let topic = form.elements["topic"].value; 
+          let concept = form.elements["concept"].value; 
+          xhr.send(JSON.stringify({
+            "id": id, 
+            "topic": topic, 
+            "concept": concept
+          })); 
+          loadResponses(); 
+          form.reset(); 
+        };
+      </script>
+    </div>
   </div>
   <div class="ResponseBox">
       <table id="responses"> 
         <thead>
           <tr>  
-            <!--<th>ID</th>-->
             <th>Topic</th>
             <th>Concept</th>
             <th>Action</th>
@@ -238,8 +239,9 @@
   window.onload = loadResponses; 
   </script>
   </div>
+</div>
   <a class="authorTag" href="aboutme.html">Click to learn more about the author of this page!</a>
-
+  </div>
 </body>
 
 </html> 
