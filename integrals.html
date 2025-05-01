@@ -40,7 +40,7 @@
               var image1 = document.getElementById("heart");
               image1.src = imageList[index];
               if (imageList[index] == 'fullheart1.png') {
-                  likeCount++; 
+                  likeCount++;  
                   sendLikeToServer(likeCount); 
               }
               document.querySelector('.post-rating-count').textContent = likeCount; 

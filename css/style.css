@@ -75,13 +75,7 @@ li {
   color: black;
 }
 
-#fermatLikes { 
-  display: flex; 
-  justify-content: center; 
-  gap: 4px; 
-}
-
-#integralLikes { 
+#Likes { 
   display: flex; 
   justify-content: center; 
   gap: 4px; 

@@ -20,15 +20,36 @@
       <div> 
         <h2>Theorems</h2>
         <ul> 
-          <li><a href="fermat.html">Fermat's Little Theorem</a></li><div id="fermatLikes"><span id="fermat-likes"></span> Like(s)</div>
+          <li><a href="fermat.html">Fermat's Little Theorem</a></li><div id="Likes"><span id="fermat-likes"></span> Like(s)</div>
+           <script>
+             document.addEventListener("DOMContentLoaded", function() {
+               const counter = document.getElementById("fermat-likes");
+               if (!counter) return; 
+                 fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/fermat-likes")
+                 .then((res) => res.json())
+                 .then((data) => {
+                   counter.textContent = JSON.parse(data).count || 0; 
+                 })
+                 .catch(err => {
+                   console.error("failed to fetch like count: ", err); 
+                   counter.textContent = "0"; 
+                 });
+             });
+           </script>
+      </div>
+    
+      <div>
+        <h2>Proofs</h2>
+        <ul> 
+          <li><a href="induction.html">Proof by Induction</a></li><div id="Likes"><span id="induction-likes"></span> Like(s)</div>
           <script>
             document.addEventListener("DOMContentLoaded", function() {
-              const counter = document.getElementById("fermat-likes");
+              const counter = document.getElementById("induction-likes");
               if (!counter) return; 
                 fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/fermat-likes")
                 .then(res => res.json())
                 .then(data => {
-                  counter.textContent = data.count || 0; 
+                  counter.textContent = JSON.parse(data).count || 0;
                 })
                 .catch(err => {
                   console.error("failed to fetch like count: ", err); 
@@ -36,27 +57,21 @@
                 });
             });
           </script>
-      </div>
-    
-      <div>
-        <h2>Proofs</h2>
-        <ul> 
-          <li><a href="induction.html">Proof by Induction</a></li>
         </ul>
       </div>
     
       <div>
         <h2>Calculus Concepts</h2>
         <ul> 
-          <li><a href="integrals.html">Integrals</a></li><div id="integralLikes"><span id="integrals-likes"></span> Like(s)</div>
+          <li><a href="integrals.html">Integrals</a></li><div id="Likes"><span id="integrals-likes"></span> Like(s)</div>
           <script>
             document.addEventListener("DOMContentLoaded", function() {
               const counter = document.getElementById("integrals-likes");
               if (!counter) return; 
-                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/fermat-likes")
+                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/integrals-likes")
                 .then(res => res.json())
                 .then(data => {
-                  counter.textContent = data.count || 0; 
+                  counter.textContent = JSON.parse(data).count || 0;
                 })
                 .catch(err => {
                   console.error("failed to fetch like count: ", err); 
@@ -72,21 +87,66 @@
       <div>
         <h2>Topological Concepts</h2>
         <ul>
-          <li><a href="rationaltangles.html">Rational Tangles</a></li>
+          <li><a href="rationaltangles.html">Rational Tangles</a></li><div id="Likes"><span id="rational-likes"></span> Like(s)</div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              const counter = document.getElementById("rational-likes");
+              if (!counter) return; 
+                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/rational-likes")
+                .then(res => res.json())
+                .then(data => {
+                  counter.textContent = JSON.parse(data).count || 0;
+                })
+                .catch(err => {
+                  console.error("failed to fetch like count: ", err); 
+                  counter.textContent = "0"; 
+                });
+            });
+          </script>
         </ul>
       </div>
     
       <div>
         <h2>Overview of Fields</h2>
         <ul>
-          <li><a href="combinatorics.html">Combinatorics</a></li></l>
+          <li><a href="combinatorics.html">Combinatorics</a></li><div id="Likes"><span id="combinatorics-likes"></span> Like(s)</div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              const counter = document.getElementById("combinatorics-likes");
+              if (!counter) return; 
+                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/combinatorics-likes")
+                .then(res => res.json())
+                .then(data => {
+                  counter.textContent = JSON.parse(data).count || 0; 
+                })
+                .catch(err => {
+                  console.error("failed to fetch like count: ", err); 
+                  counter.textContent = "0"; 
+                });
+            });
+          </script>
         </ul>
       </div>
     
       <div>
         <h2>Irrationalities</h2>
         <ul>
-          <li><a href="imaginarynumbers.html">Imaginary Numbers</a></li>
+          <li><a href="imaginarynumbers.html">Imaginary Numbers</a></li><div id="Likes"><span id="imaginary-likes"></span> Like(s)</div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              const counter = document.getElementById("imaginary-likes");
+              if (!counter) return; 
+                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/fermat-likes")
+                .then(res => res.json())
+                .then(data => {
+                  counter.textContent = JSON.parse(data).count || 0; 
+                })
+                .catch(err => {
+                  console.error("failed to fetch like count: ", err); 
+                  counter.textContent = "0"; 
+                });
+            });
+          </script>
         </ul>
       </div>
     </div>
