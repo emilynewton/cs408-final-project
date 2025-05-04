@@ -112,6 +112,9 @@ button {
   background-color: #e099bc;
   color: black;
   border-color: #801146; 
+  width: 40%; 
+  height: 30px  
+
 }
 
 #responses {
@@ -149,5 +152,9 @@ td {
 }
 
 #topic {
-  height: 21px;
+  height: 25px;
+}
+
+#concept {
+  height: 25px; 
 }
