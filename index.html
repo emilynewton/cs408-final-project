@@ -23,19 +23,19 @@
         <ul> 
           <li><a href="fermat.html">Fermat's Little Theorem</a></li><div id="Likes"><span id="fermat-likes"></span> Like(s)</div>
            <script>
-             document.addEventListener("DOMContentLoaded", function() {
-               const counter = document.getElementById("fermat-likes");
-               if (!counter) return; 
-                 fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/fermat-likes")
-                 .then((res) => res.json())
-                 .then((data) => {
-                   counter.textContent = JSON.parse(data).count || 0; 
-                 })
-                 .catch(err => {
-                   console.error("failed to fetch like count: ", err); 
-                   counter.textContent = "0"; 
-                 });
-             });
+            document.addEventListener("DOMContentLoaded", function() {
+                let lambda = document.getElementById("lambda-info");
+                const counter = document.getElementById("fermat-likes"); 
+                if (!counter) return; 
+                const xhr = new XMLHttpRequest(); 
+                xhr.open("GET", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/fermat-likes");
+                xhr.onload = function() {
+                  const data = JSON.parse(xhr.responseText); 
+                  const count = data.count; 
+                  counter.textContent = count || 0; 
+                };
+                xhr.send(); 
+              });
            </script>
       </div>
     
@@ -44,19 +44,19 @@
         <ul> 
           <li><a href="induction.html">Proof by Induction</a></li><div id="Likes"><span id="induction-likes"></span> Like(s)</div>
           <script>
-            document.addEventListener("DOMContentLoaded", function() {
-              const counter = document.getElementById("induction-likes");
-              if (!counter) return; 
-                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/induction-likes")
-                .then(res => res.json())
-                .then(data => {
-                  counter.textContent = JSON.parse(data).count || 0;
-                })
-                .catch(err => {
-                  console.error("failed to fetch like count: ", err); 
-                  counter.textContent = "0"; 
-                });
-            });
+              document.addEventListener("DOMContentLoaded", function() {
+                let lambda = document.getElementById("lambda-info");
+                const counter = document.getElementById("induction-likes"); 
+                if (!counter) return; 
+                const xhr = new XMLHttpRequest(); 
+                xhr.open("GET", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/induction-likes");
+                xhr.onload = function() {
+                  const data = JSON.parse(xhr.responseText); 
+                  const count = data.count; 
+                  counter.textContent = count || 0; 
+                };
+                xhr.send(); 
+              });
           </script>
         </ul>
       </div>
@@ -67,18 +67,17 @@
           <li><a href="integrals.html">Integrals</a></li><div id="Likes"><span id="integrals-likes"></span> Like(s)</div>
           <script>
             document.addEventListener("DOMContentLoaded", function() {
-              const counter = document.getElementById("integrals-likes");
-              if (!counter) return; 
-                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/integrals-likes")
-                .then(res => res.json())
-                .then(data => {
-                  counter.textContent = JSON.parse(data).count || 0;
-                })
-                .catch(err => {
-                  console.error("failed to fetch like count: ", err); 
-                  counter.textContent = "0"; 
-                });
-            });
+                const counter = document.getElementById("integrals-likes"); 
+                if (!counter) return; 
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/integrals-likes");
+                xhr.onload = function() {
+                  const data = JSON.parse(xhr.responseText); 
+                  const count = data.count; 
+                  counter.textContent = count || 0; 
+                };
+                xhr.send(); 
+              });
           </script>
         </ul>
       </div>
@@ -91,18 +90,17 @@
           <li><a href="rationaltangles.html">Rational Tangles</a></li><div id="Likes"><span id="rational-likes"></span> Like(s)</div>
           <script>
             document.addEventListener("DOMContentLoaded", function() {
-              const counter = document.getElementById("rational-likes");
-              if (!counter) return; 
-                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/rational-likes")
-                .then(res => res.json())
-                .then(data => {
-                  counter.textContent = JSON.parse(data).count || 0;
-                })
-                .catch(err => {
-                  console.error("failed to fetch like count: ", err); 
-                  counter.textContent = "0"; 
-                });
-            });
+                const counter = document.getElementById("rational-likes"); 
+                if (!counter) return; 
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/rational-likes");
+                xhr.onload = function() {
+                  const data = JSON.parse(xhr.responseText); 
+                  const count = data.count; 
+                  counter.textContent = count || 0; 
+                };
+                xhr.send(); 
+              });
           </script>
         </ul>
       </div>
@@ -113,18 +111,17 @@
           <li><a href="combinatorics.html">Combinatorics</a></li><div id="Likes"><span id="combinatorics-likes"></span> Like(s)</div>
           <script>
             document.addEventListener("DOMContentLoaded", function() {
-              const counter = document.getElementById("combinatorics-likes");
-              if (!counter) return; 
-                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/combinatorics-likes")
-                .then(res => res.json())
-                .then(data => {
-                  counter.textContent = JSON.parse(data).count || 0; 
-                })
-                .catch(err => {
-                  console.error("failed to fetch like count: ", err); 
-                  counter.textContent = "0"; 
-                });
-            });
+                const counter = document.getElementById("combinatorics-likes"); 
+                if (!counter) return; 
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/combinatorics-likes");
+                xhr.onload = function() {
+                  const data = JSON.parse(xhr.responseText); 
+                  const count = data.count; 
+                  counter.textContent = count || 0; 
+                };
+                xhr.send(); 
+              });
           </script>
         </ul>
       </div>
@@ -135,18 +132,17 @@
           <li><a href="imaginarynumbers.html">Imaginary Numbers</a></li><div id="Likes"><span id="imaginary-likes"></span> Like(s)</div>
           <script>
             document.addEventListener("DOMContentLoaded", function() {
-              const counter = document.getElementById("imaginary-likes");
-              if (!counter) return; 
-                fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/imaginary-likes")
-                .then(res => res.json())
-                .then(data => {
-                  counter.textContent = JSON.parse(data).count || 0; 
-                })
-                .catch(err => {
-                  console.error("failed to fetch like count: ", err); 
-                  counter.textContent = "0"; 
-                });
-            });
+                const counter = document.getElementById("imaginary-likes"); 
+                if (!counter) return; 
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/imaginary-likes");
+                xhr.onload = function() {
+                  const data = JSON.parse(xhr.responseText); 
+                  const count = data.count; 
+                  counter.textContent = count || 0; 
+                };
+                xhr.send(); 
+              });
           </script>
         </ul>
       </div>
@@ -155,6 +151,7 @@
 <div class="UserInput">
   <div class="QuestionBox">
       <p> Do you have a topic that you want covered on this page? Let us know!</p>
+      <p class="caption">(Refresh the page to see your submission!)
       <div class="Suggestions">
       <form id="SuggestionBox"> 
         <input type="text" placeholder="Topic (e.g. Theorem, Proof, etc)" id="topic" name="topic">
