@@ -154,14 +154,20 @@
       <p class="caption">(Refresh the page to see your submission!)
       <div class="Suggestions">
       <form id="SuggestionBox"> 
-        <input type="text" placeholder="Topic (e.g. Theorem, Proof, etc)" id="topic" name="topic">
+        <select placeholder="Topic..." id="topic" name="topic">
+          <option value="Theorem">Theorem</option>
+          <option value="Proof">Proof</option>
+          <option value="Calculus">Calculus Concept</option>
+          <option value="Topology">Topological Concept</option>
+          <option value="Overview">Overview of Fields</option>
+          <option value="Irrationality">Irrationalities</option>
         <input type="text" placeholder="Concept..." id="concept" name="concept">
       </form>    
       <button id="addTopic">Submit!</button>
       <script> 
         document.getElementById("addTopic").onclick = function () {
           let xhr = new XMLHttpRequest(); 
-          xhr.open("PUT", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items");
+          xhr.open("PUT", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/suggestions");
           xhr.setRequestHeader("Content-Type", "application/json"); 
           let form = document.getElementById("SuggestionBox"); 
           let id = `item-${Date.now()}`; 
@@ -194,7 +200,7 @@
 <script> 
     function loadResponses() {
       let xhr = new XMLHttpRequest(); 
-      xhr.open("GET", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items");
+      xhr.open("GET", "https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/suggestions");
       xhr.onload = function () {
         let items = JSON.parse(xhr.responseText); 
         let tableBody = document.getElementById("responses").getElementsByTagName("tbody")[0]; 
@@ -226,7 +232,7 @@
     };
   function deleteItem(itemId) {
     let xhr = new XMLHttpRequest(); 
-    xhr.open("DELETE", `https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items/${itemId}`);
+    xhr.open("DELETE", `https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/suggestions/${itemId}`);
     xhr.setRequestHeader("Content-Type", "application/json"); 
     xhr.onload = function() {
       loadResponses(); 
