@@ -11,7 +11,6 @@ window.onload = function () {
   };
 
 function fetchLikeCount(id, endpoint) {
-    document.addEventListener("DOMContentLoaded", function () {
       const counter = document.getElementById(id);
       if (!counter) return;
       const xhr = new XMLHttpRequest();
@@ -22,7 +21,6 @@ function fetchLikeCount(id, endpoint) {
         counter.textContent = count || 0;
       };
       xhr.send();
-    });
   }
 
 function addTopic() {
@@ -33,7 +31,15 @@ function addTopic() {
         let form = document.getElementById("SuggestionBox"); 
         let id = `item-${Date.now()}`; 
         let topic = form.elements["topic"].value; 
-        let concept = form.elements["concept"].value; 
+        let concept = form.elements["concept"].value;
+        const unsafeChars = /[&<>"'`=\/]/
+        if (concept == "") {
+            window.alert("Must submit a topic and a concept!"); 
+            return; 
+        } else if (unsafeChars.test(concept)){
+            form.reset(); 
+            return; 
+        }
         xhr.send(JSON.stringify({
           "id": id, 
           "topic": topic, 
@@ -85,4 +91,5 @@ function loadResponses() {
       loadResponses(); 
     };
     xhr.send(); 
-  }
+  };
+  export { fetchLikeCount, addTopic, loadResponses, deleteItem };
