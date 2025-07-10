@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="utf-8">
+        <title>Linear Approximations</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <script type="text/javascript"
+          src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+    </head>
+    <body>
+        <h1><a href="index.html" class="HomepageLink"><img src="meowmatical.PNG" alt="Meowmatical Logo" width="300" height="100"></a></h1>
+        <h2>Integrals</h2>
+        <div class="topicPage">
+          <p>Linear approximations are an application of tangent lines to a function. Not exactly a derivative application, but you'll notice that 
+            in order to get the tangent line we must take derivatives. So here is how it works. We have a function $f(x)$, its tangent is defined at $x = a$. 
+            So, the equation of the tangent line, known as $L(x)$, is $L(x) = f(a)+f'(a)(x-a)$. The point of the tangent line 
+            would be located at $(a, f(a))$. So, at $x=a$, the tangent line is the linear approximation to our function $f(x)$. 
+          </p>
+          <p> 
+            Let's create an example. Our function is $f(\theta) = \cos{\theta}$ at a point $\theta = 0$, meaning $f(0)=1. So, this means $f'(\theta)=-\sin{\theta}$ and f'(0)=0. 
+            Our linear approximation is $L(\theta)=f(0)+f'(0)(\theta-a)\\
+                                            = 1 + (0)(\theta-0)\\
+                                            = 1$
+            This tells us that $\cos{\theta}$ is approximately 1. Something to note is that it's important that $\theta$ stays small, because as it moves away from our point $a$, in this case, 0, 
+            the approximation becomes less and less accurate. 
+          </p>
+        </div>
+        <br>
+        <div class="sources">
+            <h2>Sources!</h2>
+            <ul> 
+                
+            </ul>
+        </div>
+        <script>
+          var index = 0;
+          var imageList = ['emptyheart.jpg', 'fullheart1.png'];
+          var likeCount = 0; 
+
+          function changeImage() {
+              index = index + 1;
+              if (index == imageList.length) {
+                  index = 0;
+                  likeCount--; 
+              }
+              var image1 = document.getElementById("heart");
+              image1.src = imageList[index];
+              if (imageList[index] == 'fullheart1.png') {
+                  likeCount++;  
+                  sendLikeToServer(likeCount); 
+              }
+              document.querySelector('.post-rating-count').textContent = likeCount; 
+          }
+          
+          function sendLikeToServer(likeCount) {
+              fetch("https://ff0fnmu6n5.execute-api.us-east-2.amazonaws.com/items", {
+                  method: 'PUT', 
+                  headers: {
+                      'Content-Type': 'application/json'
+                  }, 
+                  body: JSON.stringify({id: 'linearapprox-likes', count: likeCount})
+              })
+              .then(response => response.json())
+              .then(data => console.log("updated like count", data))
+          }
+      </script> 
+      <div class="post-rating">
+          <button type="button" class="likeButton" onclick="changeImage()"><img src='emptyheart.jpg' id="heart" alt="heart like button"></button>
+          <span id="linearapprox-likes" class="post-rating-count">0</span>
+      </div>
+    </body>
+</html>

@@ -71,7 +71,7 @@ li {
   display: flex; 
   justify-content: flex-start; 
   padding: 12px 0; 
-  cursor: default; 
+  cursor: default;
 }
 
 .post-rating-count {
@@ -112,9 +112,8 @@ button {
   background-color: #e099bc;
   color: black;
   border-color: #801146; 
-  width: 40%; 
-  height: 30px  
-
+  /* width: 40%; 
+  height: 30px   */
 }
 
 #responses {
