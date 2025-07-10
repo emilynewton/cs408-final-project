@@ -15,7 +15,7 @@
     </head>
     <body>
         <h1><a href="index.html" class="HomepageLink"><img src="meowmatical.PNG" alt="Meowmatical Logo" width="300" height="100"></a></h1>
-        <h2>Integrals</h2>
+        <h2>Linear Approximations</h2>
         <div class="topicPage">
           <p>Linear approximations are an application of tangent lines to a function. Not exactly a derivative application, but you'll notice that 
             in order to get the tangent line we must take derivatives. So here is how it works. We have a function $f(x)$, its tangent is defined at $x = a$. 
@@ -23,12 +23,19 @@
             would be located at $(a, f(a))$. So, at $x=a$, the tangent line is the linear approximation to our function $f(x)$. 
           </p>
           <p> 
-            Let's create an example. Our function is $f(\theta) = \cos{\theta}$ at a point $\theta = 0$, meaning $f(0)=1. So, this means $f'(\theta)=-\sin{\theta}$ and f'(0)=0. 
-            Our linear approximation is $L(\theta)=f(0)+f'(0)(\theta-a)\\
-                                            = 1 + (0)(\theta-0)\\
-                                            = 1$
+            Let's create an example. Our function is $f(\theta) = \cos{\theta}$ at a point $\theta = 0$, meaning $f(0)=1$. So, this means $f'(\theta)=-\sin{\theta}$ and f'(0)=0. 
+            Our linear approximation is $L(\theta)=f(0)+f'(0)(\theta-a)\\= 1 + (0)(\theta-0)\\= 1$
+            <br>
             This tells us that $\cos{\theta}$ is approximately 1. Something to note is that it's important that $\theta$ stays small, because as it moves away from our point $a$, in this case, 0, 
             the approximation becomes less and less accurate. 
+          </p>
+          <p>
+            We can take this a step further. Obviously. Now that we have our local approximation at $\theta=0$ which came to be 1, we can use this to find 
+            approximations at other points. For example, if I wanted to know the approximation for $f(\theta)=\frac{\pi}{6}$, we would see first what the derivative of 
+            our function is at our original point 0. Since the derivative is $f'(\theta) = \sin{\theta}$, that means at 0, the slope is 0. So, this tells us that 
+            the tangent line must be a flat line, and is therefore 1. However, we can tell using a unit circle or our brains that the value of $\cos{\frac{\pi}{6}}$ is $\frac{\sqrt{3}}{2}$, which is 
+            about 0.866...not quite 1. That's why it's called an approximation right? You're supposed to take it with a grain of salt. If we were to choose values larger than $\frac{\pi}{6}$, that margin of 
+            error would grow larger and larger. 
           </p>
         </div>
         <br>
